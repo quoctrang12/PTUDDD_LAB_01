@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myshop/ui/cart/cart_screen.dart';
+import 'package:myshop/ui/products/top_right_badge.dart';
+import 'package:myshop/ui/screens.dart';
 
 import 'products_grid.dart';
 import '../shared/app_drawer.dart';
@@ -17,9 +19,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('My shop'), 
-        actions: <Widget>[
+      appBar: AppBar(title: const Text('My shop'), actions: <Widget>[
         buildProductFilterMenu(),
         buildShoppingCartIcon(),
       ]),
@@ -29,11 +29,14 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   }
 
   Widget buildShoppingCartIcon() {
-    return IconButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed(CartScreen.routeName);
-        },
-        icon: const Icon(Icons.shopping_cart));
+    return TopRightBadge(
+      data: CartManager().productCount,
+      child: IconButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed(CartScreen.routeName);
+          },
+          icon: const Icon(Icons.shopping_cart)),
+    );
   }
 
   Widget buildProductFilterMenu() {
