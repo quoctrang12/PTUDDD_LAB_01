@@ -1,6 +1,7 @@
 import '../../models/product.dart';
+import 'package:flutter/foundation.dart';
 
-class ProductsManager {
+class ProductsManager with ChangeNotifier {
   final List<Product> _items = [
     Product(
       id: 'p1',
@@ -36,24 +37,24 @@ class ProductsManager {
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
       isFavorite: true,
     ),
-    // Product(
-    //   id: 'p5',
-    //   title: 'Iphone',
-    //   description: 'Iphone',
-    //   price: 1149.99,
-    //   imageUrl:
-    //       'https://lzd-img-global.slatic.net/g/p/7dbe39914a7eaa3161c86b3b339c7f63.jpg_720x720q80.jpg_.webp',
-    //   isFavorite: true,
-    // ),
-    // Product(
-    //   id: 'p6',
-    //   title: 'HeadPhone',
-    //   description: 'HeadPhone',
-    //   price: 25.99,
-    //   imageUrl:
-    //       'https://lzd-img-global.slatic.net/g/p/daa27567615090623bb2cb6a665c7738.png_720x720q80.jpg_.webp',
-    //   isFavorite: false,
-    // ),
+    Product(
+      id: 'p5',
+      title: 'Iphone',
+      description: 'Iphone',
+      price: 1149.99,
+      imageUrl:
+          'https://lzd-img-global.slatic.net/g/p/7dbe39914a7eaa3161c86b3b339c7f63.jpg_720x720q80.jpg_.webp',
+      isFavorite: true,
+    ),
+    Product(
+      id: 'p6',
+      title: 'HeadPhone',
+      description: 'HeadPhone',
+      price: 25.99,
+      imageUrl:
+          'https://lzd-img-global.slatic.net/g/p/daa27567615090623bb2cb6a665c7738.png_720x720q80.jpg_.webp',
+      isFavorite: false,
+    ),
   ];
 
   int get itemCount {
@@ -70,5 +71,33 @@ class ProductsManager {
 
   Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
+  }
+
+  void addProduct(Product product) {
+    _items.add(
+      product.copyWith(
+        id: 'p${DateTime.now().toIso8601String()}',
+      ),
+    );
+    notifyListeners();
+  }
+
+  void updateProduct(Product product) {
+    final index = _items.indexWhere((item) => item.id == product.id);
+    if (index >= 0) {
+      _items[index] = product;
+      notifyListeners();
+    }
+  }
+
+  void toggleFavoriteStatus(Product product) {
+    final savedStatus = product.isFavorite;
+    product.isFavorite = !savedStatus;
+  }
+
+  void deleteProduct(String id) {
+    final index = _items.indexWhere((item) => item.id == id);
+    _items.removeAt(index);
+    notifyListeners();
   }
 }
