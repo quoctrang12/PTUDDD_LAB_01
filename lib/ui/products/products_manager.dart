@@ -1,7 +1,7 @@
 import '../../models/product.dart';
 
-class ProductsManager{
-    final List<Product> _items = [
+class ProductsManager {
+  final List<Product> _items = [
     Product(
       id: 'p1',
       title: 'Red Shirt',
@@ -36,6 +36,24 @@ class ProductsManager{
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
       isFavorite: true,
     ),
+    // Product(
+    //   id: 'p5',
+    //   title: 'Iphone',
+    //   description: 'Iphone',
+    //   price: 1149.99,
+    //   imageUrl:
+    //       'https://lzd-img-global.slatic.net/g/p/7dbe39914a7eaa3161c86b3b339c7f63.jpg_720x720q80.jpg_.webp',
+    //   isFavorite: true,
+    // ),
+    // Product(
+    //   id: 'p6',
+    //   title: 'HeadPhone',
+    //   description: 'HeadPhone',
+    //   price: 25.99,
+    //   imageUrl:
+    //       'https://lzd-img-global.slatic.net/g/p/daa27567615090623bb2cb6a665c7738.png_720x720q80.jpg_.webp',
+    //   isFavorite: false,
+    // ),
   ];
 
   int get itemCount {
@@ -50,7 +68,7 @@ class ProductsManager{
     return _items.where((prodItem) => prodItem.isFavorite).toList();
   }
 
-  Product findById(String id){
-    return _items.firstWhere((prod) => prod.id ==id);
+  Product findById(String id) {
+    return _items.firstWhere((prod) => prod.id == id);
   }
 }

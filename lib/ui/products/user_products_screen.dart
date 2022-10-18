@@ -4,32 +4,31 @@ import 'user_product_list_tile.dart';
 import 'products_manager.dart';
 import '../shared/app_drawer.dart';
 
-class UserProducScreen extends StatelessWidget{
+class UserProductScreen extends StatelessWidget {
   static const routeName = '/user-products';
-  const UserProducScreen({super.key});
+  const UserProductScreen({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     final productsManager = ProductsManager();
     return Scaffold(
-      appBar: AppBar(
-        title:  const Text('Your Products'),
-        actions: <Widget>[
-          buildAddButton(),
-        ],
-      ),
-      drawer: const AppDrawer(),
-      body: RefreshIndicator(
-        onRefresh: () async => print('refresh products'),
-        child: buildUserProductListView(productsManager),
-      )
-    );
-
+        appBar: AppBar(
+          title: const Text('Your Products'),
+          actions: <Widget>[
+            buildAddButton(),
+          ],
+        ),
+        drawer: const AppDrawer(),
+        body: RefreshIndicator(
+          onRefresh: () async => print('refresh products'),
+          child: buildUserProductListView(productsManager),
+        ));
   }
-  Widget buildUserProductListView(ProductsManager productsManager){
+
+  Widget buildUserProductListView(ProductsManager productsManager) {
     return ListView.builder(
       itemCount: productsManager.itemCount,
-      itemBuilder: (ctx, i)=> Column(
+      itemBuilder: (ctx, i) => Column(
         children: [
           UserProductListTile(productsManager.items[i]),
           const Divider(),
@@ -38,11 +37,11 @@ class UserProducScreen extends StatelessWidget{
     );
   }
 
-  Widget buildAddButton(){
-    return IconButton(onPressed: (){
-      print('Go to edit product screen');
-    }, icon: const Icon(Icons.add));
+  Widget buildAddButton() {
+    return IconButton(
+        onPressed: () {
+          print('Go to edit product screen');
+        },
+        icon: const Icon(Icons.add));
   }
-
-
 }

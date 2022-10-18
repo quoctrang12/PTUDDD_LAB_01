@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Lato',
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.purple,
+          primarySwatch: Colors.blue,
         ).copyWith(
           secondary: Colors.deepOrange,
         ),
@@ -25,17 +25,17 @@ class MyApp extends StatelessWidget {
       // home: SafeArea(
       //   child: ProductDetailScreen(ProductsManager().items[0],),
       // ),
-      // home: const SafeArea(
-      //   child: ProductsOverviewScreen(),
-      //   child: UserProducScreen(),
-      //   child: CartScreen(),
-      //   child: OrderScreen(),
-      // ),
-      home: const ProductsOverviewScreen(),
+      home: const SafeArea(
+        child: ProductsOverviewScreen(),
+        // child: UserProducScreen(),
+        // child: CartScreen(),
+        // child: OrderScreen(),
+      ),
+      // home: const ProductsOverviewScreen(),
       routes: {
         CartScreen.routeName: (ctx) => const CartScreen(),
         OrderScreen.routeName: (ctx) => const OrderScreen(),
-        UserProducScreen.routeName: (context) => const UserProducScreen()
+        UserProductScreen.routeName: (context) => const UserProductScreen()
       },
       onGenerateRoute: (settings) {
         if (settings.name == ProductDetailScreen.routeName) {

@@ -14,7 +14,13 @@ class OrdersManager with ChangeNotifier {
           title: 'Red Shirt',
           price: 29.99,
           quantity: 2,
-        )
+        ),
+        // CartItem(
+        //   id: 'c2',
+        //   title: 'HeadPhone',
+        //   price: 25.99,
+        //   quantity: 3,
+        // )
       ],
       dateTime: DateTime.now(),
     )
@@ -24,7 +30,7 @@ class OrdersManager with ChangeNotifier {
     return _orders.length;
   }
 
-  List<OrderItem> get orders{
+  List<OrderItem> get orders {
     return [..._orders];
   }
 }
