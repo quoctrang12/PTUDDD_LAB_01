@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:provider/provider.dart';
 
 import 'cart_item_card.dart';
 import 'cart_manager.dart';
@@ -9,7 +10,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cart = CartManager();
+    final cart = context.watch<CartManager>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Cart'),
@@ -26,10 +27,8 @@ class CartScreen extends StatelessWidget {
 
   Widget buildCartDetails(CartManager cart) {
     return ListView(
-      children: cart.productEntries
-          .map((entry) =>
-              CartItemCard(productId: entry.key, cartItem: entry.value))
-          .toList(),
+      children: cart.ProductEntries.map((entry) =>
+          CartItemCard(productId: entry.key, cartItem: entry.value)).toList(),
     );
   }
 
